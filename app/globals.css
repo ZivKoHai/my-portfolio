@@ -1,13 +1,17 @@
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
+/* :root {
+  --background: #fafafa;
+  --foreground: #080808;
+  --primary: #ccff00;
+  --secondary: #aad400;
+  --isolation: #1d1d1d;
+} */
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+/* prettier-ignore */
+
+:root {
+  --power1-in: linear( 0, 0.0039, 0.0156, 0.0352, 0.0625, 0.0977, 0.1407, 0.1914, 0.2499, 0.3164, 0.3906 62.5%, 0.5625, 0.7656, 1 );
+
+
 }
 
 html,
@@ -17,8 +21,6 @@ body {
 }
 
 body {
-  color: var(--foreground);
-  background: var(--background);
   font-family: Arial, Helvetica, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
@@ -38,5 +40,66 @@ a {
 @media (prefers-color-scheme: dark) {
   html {
     color-scheme: dark;
+  }
+}
+
+/* HTML: <div class="loader"></div> */
+.loader {
+  width: 40px;
+  aspect-ratio: 1;
+  --c: linear-gradient(#000 0 0);
+  --r1: radial-gradient(farthest-side at bottom, #000 93%, #0000);
+  --r2: radial-gradient(farthest-side at top, #000 93%, #0000);
+  background: var(--c), var(--r1), var(--r2), var(--c), var(--r1), var(--r2),
+    var(--c), var(--r1), var(--r2);
+  background-repeat: no-repeat;
+  animation: l2 1s infinite alternate;
+}
+@keyframes l2 {
+  0%,
+  25% {
+    background-size: 8px 0, 8px 4px, 8px 4px, 8px 0, 8px 4px, 8px 4px, 8px 0,
+      8px 4px, 8px 4px;
+    background-position: 0 50%, 0 calc(50% - 2px), 0 calc(50% + 2px), 50% 50%,
+      50% calc(50% - 2px), 50% calc(50% + 2px), 100% 50%, 100% calc(50% - 2px),
+      100% calc(50% + 2px);
+  }
+  50% {
+    background-size: 8px 100%, 8px 4px, 8px 4px, 8px 0, 8px 4px, 8px 4px, 8px 0,
+      8px 4px, 8px 4px;
+    background-position: 0 50%, 0 calc(0% - 2px), 0 calc(100% + 2px), 50% 50%,
+      50% calc(50% - 2px), 50% calc(50% + 2px), 100% 50%, 100% calc(50% - 2px),
+      100% calc(50% + 2px);
+  }
+  75% {
+    background-size: 8px 100%, 8px 4px, 8px 4px, 8px 100%, 8px 4px, 8px 4px,
+      8px 0, 8px 4px, 8px 4px;
+    background-position: 0 50%, 0 calc(0% - 2px), 0 calc(100% + 2px), 50% 50%,
+      50% calc(0% - 2px), 50% calc(100% + 2px), 100% 50%, 100% calc(50% - 2px),
+      100% calc(50% + 2px);
+  }
+  95%,
+  100% {
+    background-size: 8px 100%, 8px 4px, 8px 4px, 8px 100%, 8px 4px, 8px 4px,
+      8px 100%, 8px 4px, 8px 4px;
+    background-position: 0 50%, 0 calc(0% - 2px), 0 calc(100% + 2px), 50% 50%,
+      50% calc(0% - 2px), 50% calc(100% + 2px), 100% 50%, 100% calc(0% - 2px),
+      100% calc(100% + 2px);
+  }
+}
+
+.fade-in-bottom {
+  animation: fadeInBottom 1s ease-in-out forwards;
+  opacity: 0;
+}
+
+@keyframes fadeInBottom {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
   }
 }
